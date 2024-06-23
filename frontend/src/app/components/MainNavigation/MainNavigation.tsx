@@ -3,12 +3,12 @@ import React from 'react';
 function MainNavigation() {
   return (
     <header className="bg-white">
-      <nav className="container-xl  mx-auto px-6 py-3">
+      <nav className="container-xl  mx-auto px-6 py-6">
         <div className="flex justify-between items-center">
           <a href="#" className="text-2xl font-bold text-gray-800">
             JAG Aesthetic
           </a>
-          <div className="flex space-x-4 hidden">
+          <div className="flex space-x-4 md:hidden">
             <a href="#" className="text-gray-800">
               Home
             </a>

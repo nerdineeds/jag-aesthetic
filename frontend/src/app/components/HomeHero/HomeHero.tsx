@@ -1,85 +1,84 @@
+'use client';
 import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
+import { GoArrowUpRight } from 'react-icons/go';
+import LogoSlider, { LogosImage } from '../LogoSlider/LogoSlider';
 
-function HomeHero() {
-  return (
-    <>
-      <div className="mx-auto max-w-xl">
-        {/* HERO CONTENT */}
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
-          We help{' '}
-          <span className="text-gray-300">early stage foundefrs</span>{' '}
-          accelerrate their design efforts.
-        </h2>
-        <p className="mt-6 text-base leading-8 text-gray-600">
-          Take your next leap with us, we’re a design studio with over
-          10 years of experience crafting delightful user experiences
-          for start-ups, founders and established brands and
-          businesses.
-        </p>
-        <p className="mt-6 text-base leading-8 text-gray-600">
-          Elevate your product market fit and connect with your ideal
-          customer base. We’re here to assist you with wireframes to
-          full-fidelity designs, every step along the way.
-        </p>
-
-        {/* CTA BUTTON GROUP */}
-        <div className="buttonGroup flex items-center gap-x-6 my-5">
-          <Link
-            className="bg-black rounded-full hover:bg-black/75 transition-colors ease-in-out duration-150 py-1.5 px-10 shadow-lg text-white text-center flex items-center justify-center"
-            href="/contact"
-          >
-            Book an intro call
-          </Link>
-          <Link
-            className=" rounded-full py-2 px-3 text-black text-center flex items-center justify-center"
-            href="/contact"
-          >
-            Email
-          </Link>
-        </div>
-      </div>
-      <div className="logo-group hidden md:flex flex-row items-center gap-x-10 max-w-[800px] mx-auto my-12 justify-between">
-        <div className="w-[160px[] opacity-60 min-h-[100px] relative flex items-center justify-center">
-          <Image
-            alt={'logo name'}
-            src="https://placehold.jp/3d4070/ffffff/160x80.png"
-            width={160}
-            height={160}
-            className="blur-none"
-          />
-        </div>
-        <div className="w-[160px[] opacity-60 min-h-[100px] relative flex items-center justify-center">
-          <Image
-            alt={'logo name'}
-            src="https://placehold.jp/3d4070/ffffff/160x80.png"
-            width={160}
-            height={160}
-            className="blur-none"
-          />
-        </div>
-        <div className="w-[160px[] opacity-60 min-h-[100px] relative flex items-center justify-center">
-          <Image
-            alt={'logo name'}
-            src="https://placehold.jp/3d4070/ffffff/160x80.png"
-            width={160}
-            height={160}
-            className="blur-none"
-          />
-        </div>
-        <div className="w-[160px[] opacity-60 min-h-[100px] relative flex items-center justify-center">
-          <Image
-            alt={'logo name'}
-            src="https://placehold.jp/3d4070/ffffff/160x80.png"
-            width={160}
-            height={160}
-            className="blur-none"
-          />
-        </div>
-      </div>
-    </>
-  );
+interface CTA {
+  text: string;
+  url: string;
+  hasIcon: boolean;
 }
+
+interface HeroData {
+  logos: LogosImage[];
+  content: string[];
+  ctas: CTA[];
+  industries: string[];
+}
+interface ParagraphProps {
+  text: string;
+  isFirst: boolean;
+}
+
+const HomeHero: React.FC<HeroData> = ({
+  logos,
+  content,
+  ctas,
+  industries,
+}) => {
+  const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex(
+        (prevIndex) => (prevIndex + 1) % industries.length
+      );
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [industries]); // Including industries in the dependency array
+
+  return (
+    <div className="block-container bg-white">
+      <div className="max-w-xl mx-auto py-12">
+        <h1 className="text-4xl font-medium tracking-tight pb-4 text-charcoal">
+          We help
+          <span className="text-periwinkle-dark opacity-70 mx-1 scroll-text">
+            {industries[currentTextIndex]}
+          </span>
+          <br />
+          accelerate their design efforts.
+        </h1>
+        {content.map((paragraph, index) => (
+          <Paragraph
+            key={index}
+            text={paragraph}
+            isFirst={index === 0}
+          />
+        ))}
+        <CTAButtons ctas={ctas} />
+      </div>
+      <LogoSlider logos={logos} />
+    </div>
+  );
+};
+
+const Paragraph: React.FC<ParagraphProps> = ({ text, isFirst }) => (
+  <p className={`text-slateGrey ${isFirst ? 'pb-6' : 'mb-10'}`}>
+    {text}
+  </p>
+);
+
+const CTAButtons: React.FC<{ ctas: CTA[] }> = ({ ctas }) => (
+  <div className="flex flex-row items-center gap-x-4">
+    {ctas.map((cta) => (
+      <Link key={cta.text} href={cta.url}>
+        <button className="inline-flex items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-100 bg-periwinkle text-charcoal hover:bg-darkPeriwinkle h-10 px-4 py-2 shadow-md rounded-full text-base hover:text-white">
+          {cta.text} {cta.hasIcon && <GoArrowUpRight />}
+        </button>
+      </Link>
+    ))}
+  </div>
+);
 
 export default HomeHero;
