@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { GoArrowUpRight } from 'react-icons/go';
 import LogoSlider, { LogosImage } from '../LogoSlider/LogoSlider';
+import { title } from 'process';
 
 interface CTA {
   text: string;
@@ -15,6 +16,7 @@ interface HeroData {
   content: string[];
   ctas: CTA[];
   industries: string[];
+  title: string;
 }
 interface ParagraphProps {
   text: string;
@@ -24,6 +26,7 @@ interface ParagraphProps {
 const HomeHero: React.FC<HeroData> = ({
   logos,
   content,
+  title,
   ctas,
   industries,
 }) => {
@@ -42,13 +45,16 @@ const HomeHero: React.FC<HeroData> = ({
     <div className="block-container bg-white">
       <div className="max-w-xl mx-auto py-12">
         <h1 className="text-4xl font-medium tracking-tight pb-4 text-charcoal">
+          {title}
+        </h1>
+        {/* <h1 className="text-4xl font-medium tracking-tight pb-4 text-charcoal">
           We help
           <span className="text-periwinkle-dark opacity-70 mx-1 scroll-text">
             {industries[currentTextIndex]}
           </span>
           <br />
           accelerate their design efforts.
-        </h1>
+        </h1> */}
         {content.map((paragraph, index) => (
           <Paragraph
             key={index}

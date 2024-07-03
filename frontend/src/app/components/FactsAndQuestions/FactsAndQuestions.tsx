@@ -53,7 +53,7 @@ const FactsAndQuestions: React.FC<QuestionsProps> = ({
             </h3>
             {openQuestions[question.id] && (
               <div className="text-base text-muted-foreground transition-all p-2">
-                {question.answer}
+                {questions[0].answer[0].children[0].text}
               </div>
             )}
           </div>

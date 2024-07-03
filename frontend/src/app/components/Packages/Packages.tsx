@@ -77,100 +77,113 @@ const primaryServices: PrimaryService[] = [
   },
 ];
 
-const Packages: React.FC = () => {
+const formatPrice = (price: number) => {
+  if (price >= 1000) {
+    return `$${(price / 1000).toFixed(1)}k`;
+  }
+  return `$${price}`;
+};
+
+const Packages: React.FC = (data) => {
   const [togglePackages, setTogglePackages] = React.useState(false);
 
   const handlePackageToggle = (index: number) => {
     setTogglePackages(!togglePackages);
   };
-  return (
-    <div className="block-container">
-      <div className="max-w-5xl flex flex-row gap-x-8 w-full mx-auto">
-        <div className="w-2/5">
-          <h2 className="text-2xl font-medium tracking-tight">
-            Our
-            <span className="text-periwinkle-dark opacity-70 ml-2">
-              packages
-            </span>
-          </h2>
-          <div className="mx-auto bg-slate-100 p-2.5 rounded-3xl mt-8 flex flex-col gap-y-2 shadow-md">
-            {packages.map((pkg, index) => (
-              <>
-                <div className="bg-white shadow-md py-4 px-4 rounded-2xl">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-base font-medium text-gray-900 flex flex-row items-center gap-2">
-                      {pkg.name}
-                    </span>
-                    <span className="text-sm font-medium text-muted-foreground border px-2 py-1 rounded-full border-border">
-                      Starting at: ${pkg.price}K
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground mb-1.5 text-sm leading-6">
-                    {pkg.description}
-                  </p>
-                  <div className="flex mb-4"></div>
-                  <div
-                    className="text-sm text-slateGrey opacity-70 cursor-pointer"
-                    onClick={() => handlePackageToggle(index)}
-                  >
-                    Learn more
-                  </div>
-                </div>
-                {togglePackages && (
-                  <div className=" bg-white shadow-md py-4 px-4 rounded-2xl">
-                    <h3 className="text-base font-medium mb-2">
-                      What you get
-                    </h3>
-                    <div className="text-sm flex flex-col gap-2 text-muted-foreground">
-                      {pkg.services.map((service) => (
-                        <div key={service}>{service}</div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </>
-            ))}
-          </div>
-        </div>
 
-        <div className="flex-1">
-          <h2 className="text-2xl font-medium tracking-tight pb-4">
-            A full service offering. <br />
-            <span className="text-periwinkle opacity-70">
-              Close Collaboration. Quick delivery.
-            </span>
-          </h2>
-          <p className="text-muted-foreground pb-6">
-            Our quick turnaround times are designed to support you
-            through your product building journey. With unlimited
-            revisions and design requests, you&#x27;ll get our lean
-            process offering at all times.
-          </p>
-          <div className="mx-auto bg-slate-100 p-2.5 shadow-md rounded-3xl flex flex-col gap-y-3">
-            {primaryServices.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white  shadow-md  px-4 pb-1 rounded-2xl"
-              >
-                <div className="flex justify-between items-center my-4">
-                  <span className="text-base font-medium flex flex-row items-center gap-2">
-                    <FontAwesomeIcon
-                      icon={faCheckCircle}
-                      className="text-accent w-4 h-4"
-                    />
-                    {service.service}
-                  </span>
-                </div>
-                <p className="text-muted-foreground mb-4 text-sm leading-6">
-                  {service.explainer}
-                </p>
-              </div>
-            ))}
+  if (data.data.__component === 'components.services-and-packages') {
+    const { intro, packages, services } = data.data;
+
+    return (
+      <div className="block-container">
+        <div className="max-w-5xl flex flex-row gap-x-8 w-full mx-auto">
+          <div className="w-2/5">
+            <h2 className="text-2xl font-medium tracking-tight">
+              Our
+              <span className="text-periwinkle-dark opacity-70 ml-2">
+                packages
+              </span>
+            </h2>
+            <div className="mx-auto bg-slate-100 p-2.5 rounded-3xl mt-8 flex flex-col gap-y-2 shadow-md">
+              {packages &&
+                packages.data.map((pkg) => (
+                  <div key={pkg.id}>
+                    <div className="bg-white shadow-md py-4 px-4 rounded-2xl">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-base font-medium text-gray-900 flex flex-row items-center gap-2">
+                          {pkg.name}
+                        </span>
+                        <span className="text-sm font-medium text-muted-foreground border px-2 py-1 rounded-full border-border">
+                          Starting at: {formatPrice(pkg.price)}
+                        </span>
+                      </div>
+                      <p className="text-muted-foreground mb-1.5 text-sm leading-6">
+                        {pkg.description}
+                      </p>
+                      <div className="flex mb-4"></div>
+                      <div
+                        className="text-sm text-slateGrey opacity-70 cursor-pointer"
+                        onClick={() => handlePackageToggle(pkg.id)}
+                      >
+                        Learn more
+                      </div>
+                    </div>
+                    {togglePackages && (
+                      <div className=" bg-white shadow-md py-4 px-4 rounded-2xl mt-2">
+                        <h3 className="text-base font-medium mb-2">
+                          What you get
+                        </h3>
+                        <div className="text-sm flex flex-col gap-2 text-muted-foreground">
+                          {pkg.learnMore.map((lm) => {
+                            return (
+                              <div key={lm.children[0].text}>
+                                {lm.children[0].text}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <h2 className="text-2xl font-medium tracking-tight pb-4">
+              A full service offering. <br />
+              <span className="text-periwinkle opacity-70">
+                Close Collaboration. Quick delivery.
+              </span>
+            </h2>
+            <p className="text-muted-foreground pb-6">{intro}</p>
+            <div className="mx-auto bg-slate-100 p-2.5 shadow-md rounded-3xl flex flex-col gap-y-3">
+              {services &&
+                services.data.map((service) => (
+                  <div
+                    key={service.id}
+                    className="bg-white  shadow-md  px-4 pb-1 rounded-2xl"
+                  >
+                    <div className="flex justify-between items-center my-4">
+                      <span className="text-base font-medium flex flex-row items-center gap-2">
+                        <FontAwesomeIcon
+                          icon={faCheckCircle}
+                          className="text-accent w-4 h-4"
+                        />
+                        {service.title}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground mb-4 text-sm leading-6">
+                      {service.description}
+                    </p>
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Packages;
