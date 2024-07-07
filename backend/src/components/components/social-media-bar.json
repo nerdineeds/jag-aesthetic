@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_components_social_media_bars",
+  "info": {
+    "displayName": "Social Media Bar"
+  },
+  "options": {},
+  "attributes": {
+    "href": {
+      "type": "string"
+    },
+    "Socials": {
+      "type": "enumeration",
+      "enum": [
+        "facebook",
+        "instagram",
+        "linkedin",
+        "youtube",
+        "tiktok",
+        "github"
+      ]
+    }
+  }
+}

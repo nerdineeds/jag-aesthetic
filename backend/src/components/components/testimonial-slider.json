@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_components_testimonial_sliders",
+  "info": {
+    "displayName": "Testimonial Slider"
+  },
+  "options": {},
+  "attributes": {
+    "loop": {
+      "type": "boolean"
+    },
+    "testimonials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::testimonial.testimonial"
+    }
+  }
+}

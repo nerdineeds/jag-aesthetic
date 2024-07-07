@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "global_settings",
+  "info": {
+    "singularName": "global-setting",
+    "pluralName": "global-settings",
+    "displayName": "Global Settings",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ContactSlogan": {
+      "type": "text"
+    },
+    "ContactCTA": {
+      "type": "string"
+    },
+    "ContactBottomHeading": {
+      "type": "string"
+    },
+    "FooterCopyright": {
+      "type": "blocks"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Socials": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.social-media-bar"
+    }
+  }
+}
