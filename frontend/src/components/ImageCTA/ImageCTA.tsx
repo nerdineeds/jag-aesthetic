@@ -10,7 +10,7 @@ type ImageCTAProps = {
 const ImageCTA = ({ url, alt }: ImageCTAProps) => {
   return (
     <div className="block-container">
-      <div className="sm:hidden md:flex mx-auto flex-row bg-slate-100 items-center justify-center sm:w-fit xl:w-[1280px] bg-muted rounded-2xl h-[300px] lg:h-[600px] overflow-hidden">
+      <div className="sm:hidden md:flex mx-auto flex-row bg-lightgrey/50 items-center justify-center sm:w-fit xl:w-[1280px] bg-muted rounded-2xl h-[300px] lg:h-[600px] overflow-hidden">
         <Image
           alt={alt}
           loading="lazy"

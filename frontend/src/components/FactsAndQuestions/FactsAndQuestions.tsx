@@ -35,25 +35,29 @@ const FactsAndQuestions: React.FC<QuestionsProps> = ({
       <h2 className="text-2xl font-medium tracking-tight pb-4">
         Frequently asked questions
       </h2>
-      <div className="w-full bg-slate-100 p-3 rounded-3xl grid md:grid-cols-2 gap-4">
+      <div className="w-full bg-lightgrey/50 p-3 rounded-3xl grid md:grid-cols-2 gap-4">
         {questions.map((question) => (
           <div
             key={question.id}
             onClick={() => toggleQuestion(question.id)}
-            className="bg-white shadow-md py-2 px-4 rounded-2xl mb-2 w-full cursor-pointer"
+            className="bg-white shadow-md rounded-2xl mb-2 w-full cursor-pointer h-fit flex flex-col justify-between items-center"
           >
-            <h3 className="flex justify-between items-center py-4 font-medium transition-all">
-              {question.question}
+            <div
+              className={`flex w-full px-3 items-center justify-between py-3`}
+            >
+              <h3 className="font-medium transition-all">
+                {question.question}
+              </h3>
               <FontAwesomeIcon
                 icon={faChevronDown}
                 className={`w-3 h-3 transition-transform ${
                   openQuestions[question.id] ? 'rotate-180' : ''
                 }`}
               />
-            </h3>
+            </div>
             {openQuestions[question.id] && (
-              <div className="text-base text-muted-foreground transition-all p-2">
-                {questions[0].answer[0].children[0].text}
+              <div className="text-base text-muted-foreground transition-all mt-3 bg-gray-50 p-4 rounded-b-lg">
+                {question.answer[0].children[0].text}
               </div>
             )}
           </div>
