@@ -820,6 +820,39 @@ export interface ApiFactAndQuestionFactAndQuestion
   };
 }
 
+export interface ApiGlobalGlobal extends Schema.SingleType {
+  collectionName: 'globals';
+  info: {
+    singularName: 'global';
+    pluralName: 'globals';
+    displayName: 'Global';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    tite: Attribute.String;
+    description: Attribute.Text;
+    Header: Attribute.Component<'layout.header'>;
+    Footer: Attribute.Component<'layout.footer'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGlobalSettingGlobalSetting extends Schema.CollectionType {
   collectionName: 'global_settings';
   info: {
@@ -1015,6 +1048,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::fact-and-question.fact-and-question': ApiFactAndQuestionFactAndQuestion;
+      'api::global.global': ApiGlobalGlobal;
       'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::package.package': ApiPackagePackage;

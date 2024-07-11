@@ -54,6 +54,18 @@ export interface ComponentsLink extends Schema.Component {
   };
 }
 
+export interface ComponentsMiniContactForm extends Schema.Component {
+  collectionName: 'components_components_mini_contact_forms';
+  info: {
+    displayName: 'MiniContactForm';
+  };
+  attributes: {
+    slogan: Attribute.String;
+    cta_link_text: Attribute.String;
+    heading: Attribute.String;
+  };
+}
+
 export interface ComponentsServicesAndPackages extends Schema.Component {
   collectionName: 'components_components_services_and_packages';
   info: {
@@ -102,6 +114,28 @@ export interface ComponentsTestimonialSlider extends Schema.Component {
   };
 }
 
+export interface LayoutFooter extends Schema.Component {
+  collectionName: 'components_layout_footers';
+  info: {
+    displayName: 'footer';
+  };
+  attributes: {
+    Copyright: Attribute.String;
+    email: Attribute.Email;
+    socials: Attribute.Component<'components.social-media-bar', true>;
+  };
+}
+
+export interface LayoutHeader extends Schema.Component {
+  collectionName: 'components_layout_headers';
+  info: {
+    displayName: 'Header';
+  };
+  attributes: {
+    logoLink: Attribute.Component<'components.link'>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -109,9 +143,12 @@ declare module '@strapi/types' {
       'components.home-hero': ComponentsHomeHero;
       'components.image-hero': ComponentsImageHero;
       'components.link': ComponentsLink;
+      'components.mini-contact-form': ComponentsMiniContactForm;
       'components.services-and-packages': ComponentsServicesAndPackages;
       'components.social-media-bar': ComponentsSocialMediaBar;
       'components.testimonial-slider': ComponentsTestimonialSlider;
+      'layout.footer': LayoutFooter;
+      'layout.header': LayoutHeader;
     }
   }
 }
