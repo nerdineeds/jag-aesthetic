@@ -1,20 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface ComponentsFaqAccordion extends Schema.Component {
-  collectionName: 'components_components_faq_accordions';
-  info: {
-    displayName: 'FAQ Accordion';
-    description: '';
-  };
-  attributes: {
-    facts_and_questions: Attribute.Relation<
-      'components.faq-accordion',
-      'oneToMany',
-      'api::fact-and-question.fact-and-question'
-    >;
-  };
-}
-
 export interface ComponentsHomeHero extends Schema.Component {
   collectionName: 'components_components_home_heroes';
   info: {
@@ -139,7 +124,6 @@ export interface LayoutHeader extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'components.faq-accordion': ComponentsFaqAccordion;
       'components.home-hero': ComponentsHomeHero;
       'components.image-hero': ComponentsImageHero;
       'components.link': ComponentsLink;

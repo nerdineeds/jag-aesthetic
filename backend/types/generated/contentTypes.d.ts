@@ -788,38 +788,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiFactAndQuestionFactAndQuestion
-  extends Schema.CollectionType {
-  collectionName: 'facts_and_questions';
-  info: {
-    singularName: 'fact-and-question';
-    pluralName: 'facts-and-questions';
-    displayName: 'Facts and Questions';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    question: Attribute.Text;
-    answer: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::fact-and-question.fact-and-question',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::fact-and-question.fact-and-question',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiGlobalGlobal extends Schema.SingleType {
   collectionName: 'globals';
   info: {
@@ -908,7 +876,6 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
         'components.home-hero',
         'components.image-hero',
         'components.services-and-packages',
-        'components.faq-accordion',
         'components.testimonial-slider'
       ]
     >;
@@ -1047,7 +1014,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::fact-and-question.fact-and-question': ApiFactAndQuestionFactAndQuestion;
       'api::global.global': ApiGlobalGlobal;
       'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::home-page.home-page': ApiHomePageHomePage;
