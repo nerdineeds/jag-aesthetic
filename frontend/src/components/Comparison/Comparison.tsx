@@ -28,7 +28,7 @@ export type Testimonial = {
 const OPTIONS: EmblaOptionsType = { loop: true };
 
 type ComparisonProps = {
-  testimonials?: Testimonial[];
+  testimonials: Testimonial[];
 };
 
 export function Comparison({
@@ -59,9 +59,9 @@ export function Comparison({
     <div className="w-full">
       <div
         className="overflow-hidden flex bg-lightgrey/50 rounded-2xl max-w-5xl mx-auto pt-4 pb-4  md:py-8 lg:py-12 shadow-md"
-        // ref={viewportRef}
+        ref={viewportRef}
       >
-        {testimonials ? (
+        {testimonials &&
           testimonials.map((testimonial) => {
             const avatar = testimonial.authorAvatar;
             const id = testimonial.id;
@@ -107,10 +107,7 @@ export function Comparison({
                 </div>
               </div>
             );
-          })
-        ) : (
-          <p>testimonials missing</p>
-        )}
+          })}
       </div>
     </div>
   );

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_components_services_and_packages",
+  "info": {
+    "displayName": "Services and Packages"
+  },
+  "options": {},
+  "attributes": {
+    "packages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::package.package"
+    },
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service"
+    },
+    "intro": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_components_mini_contact_forms",
+  "info": {
+    "displayName": "MiniContactForm"
+  },
+  "options": {},
+  "attributes": {
+    "slogan": {
+      "type": "string"
+    },
+    "cta_link_text": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    }
+  }
+}
