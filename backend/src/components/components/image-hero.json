@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_components_image_heroes",
+  "info": {
+    "displayName": "Image Hero"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

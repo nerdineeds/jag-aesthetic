@@ -1,28 +1,37 @@
-import HomeHero from './components/HomeHero/HomeHero';
-import Packages from './components/Packages/Packages';
-import Comparison from './components/Comparison/Comparison';
-import FactsAndQuestions from './components/FactsAndQuestions/FactsAndQuestions';
-import Contact from './components/Contact/Contact';
-import ImageCTA from './components/ImageCTA/ImageCTA';
-import data from './data.json';
+import { flattenAttributes } from '@/utils/utils';
+import { getStrapiData } from '../../data/strapi/getStrapiData';
+import { HeroSection } from '../components/custom/HeroSection';
+import ImageHero from '../components/ImageHero/ImageHero';
+import Comparison from '../components/Comparison/Comparison';
+import Packages from '../components/Packages/Packages';
 
-export default function Home() {
+function blockRenderer(block: any) {
+  switch (block.__component) {
+    case 'components.home-hero':
+      return <HeroSection key={block.id} data={block} />;
+    case 'components.image-hero':
+      return <ImageHero key={block.id} data={block} />;
+    case 'components.services-and-packages':
+      return <Packages key={block.id} data={block} />;
+    case 'components.testimonial-slider':
+      return <Comparison key={block.id} data={block} />;
+    default:
+      return null;
+  }
+}
+
+export default async function Home() {
+  const strapiData = await getStrapiData('home-page');
+  const data = flattenAttributes(strapiData);
+  const { blocks } = data;
+
+  if (!blocks) return <p>No sections found</p>;
+
+  console.log(blocks);
+
   return (
-    <div className="flex flex-col gap-y-12 items-center">
-      <HomeHero
-        ctas={data.heroData.ctas}
-        content={data.heroData.content}
-        logos={data.clients}
-        industries={data.scrollTexts}
-      />
-      <ImageCTA url="/mobile.png" alt="Mobile mockup of work" />
-      <Packages />
-      <Comparison
-        comparison={data.comparison}
-        testimonials={data.testimonials}
-      />
-      <FactsAndQuestions questions={data.questions} />
-      <Contact slogan={data.contact.slogan} cta={data.contact.cta} />
+    <div className="relative flex flex-col lg:gap-y-12 items-center">
+      {blocks.map(blockRenderer)}
     </div>
   );
 }
