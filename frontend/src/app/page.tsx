@@ -27,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const strapiData = await getStrapiData('home-page');
+        const strapiData = await getStrapiData('/home-page');
         const data = flattenAttributes(strapiData);
         setBlocks(data.blocks || []);
       } catch (err) {
