@@ -22,9 +22,9 @@ function blockRenderer(block: any) {
 
 export default async function Home() {
   const strapiData = await getStrapiData('home-page');
-
   const data = flattenAttributes(strapiData);
   const { blocks } = data;
+
   if (!blocks) return <p>No sections found</p>;
 
   console.log(blocks);

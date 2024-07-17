@@ -12,12 +12,6 @@ type ComparisonTestimonialProps = {
 };
 
 export type Testimonial = {
-  children: {
-    text: string;
-  }[];
-};
-
-type TestimonialOptions = {
   id: number;
   author: string;
   company: string;
@@ -30,6 +24,7 @@ type TestimonialOptions = {
     url: string;
   };
 };
+
 const OPTIONS: EmblaOptionsType = { loop: true };
 
 type ComparisonProps = {
@@ -58,7 +53,7 @@ export function Comparison({
     onSelect();
   }, [embla, onSelect]);
 
-  const testimonials = data.testimonials.data;
+  const testimonials = data.testimonials;
 
   return (
     <div className="w-full">
@@ -73,7 +68,7 @@ export function Comparison({
             const author = testimonial.author;
             const company = testimonial.company;
             const testimonialText = testimonial.testimonial
-              ? testimonial.testimonial[0].children[0].text
+              ? testimonial.testimonial.children[0].text
               : '';
 
             return (

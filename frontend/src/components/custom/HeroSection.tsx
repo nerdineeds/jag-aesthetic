@@ -19,19 +19,24 @@ interface ParagraphText {
 interface ParagraphProps {
   text: {
     children: {
-      text: ParagraphText[];
-    };
+      text: string;
+    }[];
   };
   isFirst: boolean;
 }
 
 interface HeroDataProps {
   logos: LogosImage[];
-  content: ParagraphText[];
+  content: {
+    children: {
+      text: string;
+    }[];
+  }[];
   ctas: CTA[];
   industries: string[];
   bkgImage: string;
 }
+
 const industries = [
   'businesses',
   'startups',
@@ -80,7 +85,7 @@ export function HeroSection({
     return () => clearInterval(interval);
   }, []);
 
-  const hasBkg = bkgImage ? 'url(${bkgImage})' : '';
+  const hasBkg = bkgImage ? `url(${bkgImage})` : '';
 
   console.log(bkgImage);
   return (
@@ -121,9 +126,9 @@ export function HeroSection({
 
 const Paragraph: React.FC<ParagraphProps> = ({ text, isFirst }) => (
   <>
-    {text.children?.map((t: ParagraphText) => (
+    {text.children.map((t, index) => (
       <p
-        key={t.text}
+        key={index}
         className={`text-slateGrey ${isFirst ? 'pb-6' : 'mb-10'}`}
       >
         {t.text}
@@ -154,6 +159,5 @@ const CTAButtons: React.FC<{ ctas: CTA[] }> = ({ ctas }) => (
       ))}
   </div>
 );
-function className(): string | undefined {
-  throw new Error('Function not implemented.');
-}
+
+export default HeroSection;
