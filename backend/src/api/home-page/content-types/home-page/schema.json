@@ -24,7 +24,6 @@
         "components.home-hero",
         "components.image-hero",
         "components.services-and-packages",
-        "components.faq-accordion",
         "components.testimonial-slider"
       ]
     }
