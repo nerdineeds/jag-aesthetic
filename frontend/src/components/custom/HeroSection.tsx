@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import LogoSlider, { LogosImage } from '../LogoSlider/LogoSlider';
+import { LogosImage } from '../LogoSlider/LogoSlider';
 import Link from 'next/link';
 import { GoArrowUpRight } from 'react-icons/go';
 import classNames from 'classnames';
@@ -118,7 +118,6 @@ export function HeroSection({
           ))}
           <CTAButtons ctas={ctas} />
         </div>
-        <LogoSlider logos={logos} />
       </div>
     </div>
   );

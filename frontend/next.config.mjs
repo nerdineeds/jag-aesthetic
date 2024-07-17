@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'placehold.co',
       },
+      {
+        protocol: 'https',
+        hostname: 'cheerful-comfort-a701209ba5.media.strapiapp.com',
+      },
     ],
   },
 };

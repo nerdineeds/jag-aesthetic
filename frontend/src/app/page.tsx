@@ -13,8 +13,6 @@ function blockRenderer(block: any) {
       return <ImageHero key={block.id} data={block} />;
     case 'components.services-and-packages':
       return <Packages key={block.id} data={block} />;
-    case 'components.testimonial-slider':
-      return <Comparison key={block.id} data={block} />;
     default:
       return null;
   }
