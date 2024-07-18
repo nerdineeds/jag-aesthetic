@@ -1,7 +1,6 @@
 'use client';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { FaCheckCircle } from 'react-icons/fa';
 interface Service {
   id: number;
   title: string;
@@ -120,10 +119,7 @@ const Packages: React.FC<Props> = ({ data }) => {
               >
                 <div className="flex justify-between items-center my-4">
                   <span className="text-base font-medium flex flex-row items-center gap-2">
-                    <FontAwesomeIcon
-                      icon={faCheckCircle}
-                      className="text-periwinkle-200 w-4 h-4"
-                    />
+                    <FaCheckCircle className="text-periwinkle-200 w-4 h-4" />
                     {service.title}
                   </span>
                 </div>

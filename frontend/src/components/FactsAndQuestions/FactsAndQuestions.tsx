@@ -1,7 +1,6 @@
 'use client';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import { FaChevronDown } from 'react-icons/fa';
 
 interface Question {
   question: string;
@@ -48,12 +47,14 @@ const FactsAndQuestions: React.FC<QuestionsProps> = ({
               <h3 className="font-medium transition-all">
                 {question.question}
               </h3>
-              <FontAwesomeIcon
-                icon={faChevronDown}
-                className={`w-3 h-3 transition-transform ${
-                  openQuestions[question.id] ? 'rotate-180' : ''
-                }`}
-              />
+
+              <button className="sr-only">
+                <FaChevronDown
+                  className={`w-3 h-3 transition-transform ${
+                    openQuestions[question.id] ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
             </div>
             {openQuestions[question.id] && (
               <div className="text-base text-muted-foreground transition-all mt-3 bg-gray-50 p-4 rounded-b-lg">
