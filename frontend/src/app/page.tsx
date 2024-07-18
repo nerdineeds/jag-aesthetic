@@ -21,7 +21,7 @@ function blockRenderer(block: any) {
 }
 
 export default async function Home() {
-  const strapiData = await getStrapiData('home-page');
+  const strapiData = getStrapiData('home-page');
 
   const data = flattenAttributes(strapiData);
 
