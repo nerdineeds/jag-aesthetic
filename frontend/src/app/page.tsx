@@ -1,5 +1,5 @@
 import { flattenAttributes } from '@/utils/utils';
-import { getStrapiData } from '../../data/strapi/getStrapiData';
+import { getStrapiData } from '../data/strapi/getStrapiData';
 import { HeroSection } from '../components/custom/HeroSection';
 import ImageHero from '../components/ImageHero/ImageHero';
 import Comparison from '../components/Comparison/Comparison';

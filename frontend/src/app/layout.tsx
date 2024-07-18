@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import MainNavigation from '../components/MainNavigation/MainNavigation';
 import Footer from '../components/Footer/Footer';
-import { getGlobalData } from '../../data/strapi/getGlobalData';
+import { getGlobalData } from '../data/strapi/getGlobalData';
 import { flattenAttributes } from '@/utils/utils';
 
 const inter = Inter({ subsets: ['latin'] });
