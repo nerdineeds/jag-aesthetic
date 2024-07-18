@@ -57,7 +57,9 @@ export async function getStrapiData(path: string) {
   try {
     const response = await fetch(url.href);
     const data = await response.json();
+    console.log('Raw data:', data); // Log raw data before flattening
     const flattenedData = flattenAttributes(data);
+    console.log('Flattened data:', flattenedData); // Log flattened data
     return flattenedData;
   } catch (error) {
     console.error(error);
