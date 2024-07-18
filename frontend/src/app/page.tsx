@@ -22,15 +22,14 @@ function blockRenderer(block: any) {
 
 export default async function Home() {
   const strapiData = await getStrapiData('home-page');
+
   const data = flattenAttributes(strapiData);
 
   const { blocks } = data;
 
-  if (!blocks) return <p>No sections found</p>;
-
   return (
     <div className="relative flex flex-col lg:gap-y-12 items-center">
-      {/* {blocks.map(blockRenderer)} */}
+      {blocks ? blocks.map(blockRenderer) : <p>No section found</p>}
       testing
     </div>
   );
