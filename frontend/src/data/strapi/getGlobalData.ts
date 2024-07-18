@@ -9,7 +9,8 @@ const globalQuery = qs.stringify(
 );
 
 export async function getGlobalData(path: string) {
-  const baseUrl = 'http://localhost:1337/api/';
+  const baseUrl =
+    'https://cheerful-comfort-a701209ba5.strapiapp.com/api/';
 
   const url = new URL(`${baseUrl}${path}`);
   url.search = globalQuery;
