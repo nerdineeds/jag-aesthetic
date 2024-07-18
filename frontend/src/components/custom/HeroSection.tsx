@@ -117,7 +117,7 @@ export function HeroSection({
           ))}
           <CTAButtons ctas={ctas} />
         </div>
-        <LogoSlider logos={logos.data} />
+        <LogoSlider logos={logos} />
       </div>
     </div>
   );
