@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { LogosImage } from '../LogoSlider/LogoSlider';
+import LogoSlider, { LogosImage } from '../LogoSlider/LogoSlider';
 import Link from 'next/link';
 import { GoArrowUpRight } from 'react-icons/go';
 import classNames from 'classnames';
@@ -87,7 +87,6 @@ export function HeroSection({
 
   const hasBkg = bkgImage ? `url(${bkgImage})` : '';
 
-  console.log(bkgImage);
   return (
     <div
       className={`${
@@ -118,6 +117,7 @@ export function HeroSection({
           ))}
           <CTAButtons ctas={ctas} />
         </div>
+        <LogoSlider logos={logos.data} />
       </div>
     </div>
   );

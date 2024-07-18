@@ -1,5 +1,4 @@
 import { flattenAttributes } from '@/utils/utils';
-import process from 'process';
 import qs from 'qs';
 
 const homePageQuery = qs.stringify({
@@ -49,9 +48,9 @@ const homePageQuery = qs.stringify({
 });
 
 export async function getStrapiData(path: string) {
-  const baseUrl = `${process.env.STRAPI_URL}/api/`;
+  const baseUrl =
+    'https://cheerful-comfort-a701209ba5.strapiapp.com/api/';
 
-  console.log(process.env.NEXT_PUBLIC_STRAPI_URL);
   const url = new URL(path, baseUrl);
   url.search = homePageQuery;
 

@@ -52,7 +52,6 @@ const Packages: React.FC<Props> = ({ data }) => {
   const services = data.services.data;
   const packages = data.packages.data;
 
-  console.log(data);
   return (
     <div className="max-w-5xl flex flex-col lg:flex-row gap-y-8 gap-x-8 w-full mx-auto lg:p-0 my-12 lg:mt-0">
       <div className="lg:w-2/5 hidden md:block">
