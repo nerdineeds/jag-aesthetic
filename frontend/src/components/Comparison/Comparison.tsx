@@ -55,8 +55,9 @@ export function Comparison({
 
   const testimonials = data.testimonials;
 
+  console.log(testimonials);
   return (
-    <div className="w-full">
+    <div className="w-full border border-red-500">
       <div
         className="overflow-hidden flex bg-lightgrey/50 rounded-2xl max-w-5xl mx-auto pt-4 pb-4  md:py-8 lg:py-12 shadow-md"
         ref={viewportRef}
