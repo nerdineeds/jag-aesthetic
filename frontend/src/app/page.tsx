@@ -30,7 +30,8 @@ export default async function Home() {
 
   return (
     <div className="relative flex flex-col lg:gap-y-12 items-center">
-      {blocks.map(blockRenderer)}
+      {/* {blocks.map(blockRenderer)} */}
+      testing
     </div>
   );
 }
